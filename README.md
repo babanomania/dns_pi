@@ -1,6 +1,6 @@
 # DNS PI
 
-This is an ansible-playbook to setup an raspberry-pi with an pihole running with automatic backup and restore. Below are the features.
+This is an ansible-playbook to setup an raspberry-pi with an pihole running with automatic backup
 
 ### Server hardening
 

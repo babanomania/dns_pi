@@ -22,7 +22,6 @@ pihole_password: pihole
 # Use this link to create the dropbox token https://rclone.org/dropbox/
 rclone_type: dropbox
 rclone_token: {"access_token":"XXXX","token_type":"Bearer","refresh_token":"YYYY,"expiry":"ZZZZ"}
-rclone_restore: False
 
 # telegram configuration
 telegram_chatid: 1234

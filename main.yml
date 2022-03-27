@@ -41,8 +41,8 @@
     - vars/backups.yml
 
   handlers:
-    - name: Include Sync-Restore Handlers
-      import_tasks: handlers/sync_restore.yml
+    - name: Include Sync Handlers
+      import_tasks: handlers/sync.yml
 
     - name: Include Scheduling Handlers
       import_tasks: handlers/schedule_backups.yml

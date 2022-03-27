@@ -50,8 +50,3 @@
     state: directory
   listen: rclone sync
   when: backup_sync.stat.exists == False
-
-- name: Restore from drive
-  command: "sudo rclone sync remote:{{ sync.dropbox_path }} {{ base_path }}/{{ backup.repository }}"
-  listen: rclone sync
-  when: rclone_restore == True
