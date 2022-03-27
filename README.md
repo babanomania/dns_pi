@@ -1,4 +1,4 @@
-# DNS PI
+# The PiHole Ansible Playbook for RaspberryPI
 
 This is an ansible-playbook to setup an raspberry-pi with an pihole running with automatic backup
 
