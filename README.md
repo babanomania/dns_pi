@@ -60,8 +60,8 @@ ssh-copy-id pi@192.168.29.252
 4. Clone this repository, then enter the repository directory.
 
 ```bash
-git clone https://github.com/babanomania/vault_pi.git
-cd vault_pi
+git clone https://github.com/babanomania/dns_pi.git
+cd dns_pi
 ```
 
 5. Install requirements
@@ -77,6 +77,10 @@ ansible-galaxy collection install -r requirements.yml
 - `example.inventory.ini` to `inventory.ini` (replace IP address with your Pi's IP, or comment that line and uncomment the `connection=local` line if you're running it on the Pi you're setting up).
 - `example.config.yml` to `config.yml`
 
-7. Run the playbook: `ansible-playbook main.yml`
+7. Run the playbook:
+
+```bash
+ansible-playbook main.yml
+```
 
 > **If running locally on the Pi**: You may encounter an error like "Error while fetching server API version". If you do, please either reboot or log out and log back in, then run the playbook again.
