@@ -1,0 +1,20 @@
+- name: Ensure analytics scripts are present
+  become: true
+  become_user: "{{ ansible_user }}"
+  synchronize:
+    src: "{{ reporting.source }}"
+    dest: "{{ base_path }}/{{ reporting.scripts_path }}"
+    rsync_opts:
+      "--exclude=*.j2"
+  notify: 
+    - "install report dependencies"
+    - "schedule reports"
+
+- name: Ensure alert script is present
+  become: true
+  become_user: "{{ ansible_user }}"
+  template:
+    src: "{{ reporting.source }}/do_alert.sh.j2"
+    dest: "{{ base_path }}/{{ reporting.scripts_path }}/do_alert.sh"
+    mode: u=rw,g=rx,o=rx
+  notify: "schedule reports"

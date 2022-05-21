@@ -1,0 +1,27 @@
+---
+- name: Update Variables in User Profile 
+  template:
+    src: data/base_profile.j2
+    dest: "/home/{{ ansible_user }}/.profile"
+    mode: u=rw
+  listen: 
+    - "schedule reports"
+
+- name: Ensure python dependencies are installed for reporting
+  become: true
+  become_user: "{{ ansible_user }}"
+  pip:
+    requirements: "{{ base_path }}/{{ reporting.scripts_path }}/requirements.txt"
+    virtualenv: "{{ base_path }}/{{ reporting.scripts_path }}/pihole_env"
+    virtualenv_command: /usr/bin/python3 -m venv
+  listen: "install report dependencies"
+
+- name: Ensure a reporting job runs {{ reporting.schedule.description }}
+  become: true
+  become_user: "{{ ansible_user }}"
+  ansible.builtin.cron:
+    name: "run reports {{ reporting.schedule.description }}"
+    minute: "{{ reporting.schedule.minute }}"
+    hour: "{{ reporting.schedule.hour }}"
+    job: "sudo sh {{ base_path }}/{{ reporting.scripts_path }}/do_alert.sh > /dev/null 2>&1"
+  listen: "schedule reports"

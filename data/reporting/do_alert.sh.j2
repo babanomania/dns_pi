@@ -1,0 +1,6 @@
+. ~/.profile
+
+cd {{ base_path }}/{{ reporting.scripts_path }}/
+. pihole_env/bin/activate
+python3 send_analytics.py
+deactivate

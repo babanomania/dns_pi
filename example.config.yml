@@ -14,6 +14,9 @@ ensure_backup: True
 # flag to enable/disable automatic updates
 ensure_autoupdate: True
 
+# flag to enable/disable daily usage reporting
+ensure_reporting: False
+
 # pihole configuration
 pihole_tz: Europe/London
 pihole_password: pihole

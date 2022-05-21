@@ -77,3 +77,24 @@
 
     - name: Setup Containers
       import_tasks: tasks/containers/containers.yml
+
+- name: Reporting
+  hosts: dnspi
+  become: yes
+
+  vars_files:
+    - config.yml
+    - vars/reporting.yml
+
+  pre_tasks:
+    - name: pre tasks
+      import_tasks: tasks/pre.yml
+
+  handlers:
+    - name: Setup Python Environment
+      import_tasks: handlers/reporting.yml
+
+  tasks:
+    - name: Schedule Reports
+      import_tasks: tasks/reporting/copy_scripts.yml
+      when: ensure_reporting

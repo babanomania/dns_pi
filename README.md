@@ -21,6 +21,11 @@ This is an ansible-playbook to setup an raspberry-pi with an pihole running with
 - Ability to restore backups from dropbox
 - Telegram updates on backup and sync job completion
 
+### Reporting
+
+- Prepare daily usage reports of PiHole
+- Share reports via Telegram
+
 ## Prerequisites
 
 The following software packages have to be installed on your local machine and the Raspberry Pi.

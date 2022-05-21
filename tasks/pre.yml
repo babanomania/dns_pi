@@ -4,9 +4,17 @@
     update_cache: true
     cache_valid_time: 3600
 
-- name: Ensure pip is installed
+- name: Ensure dependencies are installed
   ansible.builtin.apt:
-    name: python3-pip
+    name: 
+      - python3-pip
+      - python3-numpy
+      - python3-venv
+      - libatlas-base-dev
+      - libjpeg62
+      - libopenjp2-7
+      - libtiff5
+      - libxcb1
     state: present
 
 - name: Ensure pip dependencies are installed

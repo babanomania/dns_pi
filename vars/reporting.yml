@@ -1,0 +1,8 @@
+---
+reporting:
+  scripts_path: pihole_reporting
+  source: data/reporting/
+  schedule:
+    description: everyday at 01:00
+    minute: 0
+    hour: 1
