@@ -11,6 +11,7 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
+
 def epocToDateTime(epoch):
     return datetime.fromtimestamp(int(epoch), tz=pytz.timezone(config('pihole_timezone')))
 
@@ -100,4 +101,3 @@ bot.send_photo(photo=open(config('pihole_graph_file'), 'rb'),
 
 # Remove the Generated Image
 os.remove(config('pihole_graph_file'))
-
