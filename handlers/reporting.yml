@@ -23,5 +23,5 @@
     name: "run reports {{ reporting.schedule.description }}"
     minute: "{{ reporting.schedule.minute }}"
     hour: "{{ reporting.schedule.hour }}"
-    job: "sudo sh {{ base_path }}/{{ reporting.scripts_path }}/do_alert.sh > /dev/null 2>&1"
+    job: "sh {{ base_path }}/{{ reporting.scripts_path }}/do_alert.sh > /dev/null 2>&1"
   listen: "schedule reports"
