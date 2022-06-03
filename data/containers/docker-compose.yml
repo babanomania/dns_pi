@@ -10,6 +10,8 @@ services:
       - "53:53/udp"
       - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
       - "80:80/tcp"
+    hostname: pihole
+    dns: 127.0.0.1
     environment:
       TZ: ${TIMEZONE}
       WEBPASSWORD: ${PIHOLE_PASSWORD}
