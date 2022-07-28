@@ -26,8 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export telegram_chatid={{ telegram_chatid }}
-export telegram_token={{ telegram_token }}
+export webhook_url={{ webhook_url }}
 
 export pihole_timezone={{ pihole_tz }}
 export pihole_ip=127.0.0.1

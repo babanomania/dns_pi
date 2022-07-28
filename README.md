@@ -19,12 +19,12 @@ This is an ansible-playbook to setup an raspberry-pi with an pihole running with
 - Weekly backups of the pihole teleporter data
 - Weekly syncing of backups to dropbox
 - Ability to restore backups from dropbox
-- Telegram updates on backup and sync job completion
+- Discord updates on backup and sync job completion
 
 ### Reporting
 
 - Prepare daily usage reports of PiHole
-- Share reports via Telegram
+- Share reports via Discord
 
 ## Prerequisites
 

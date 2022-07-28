@@ -1,7 +1,7 @@
 from decouple import config
 
 import pihole as ph
-import telegram
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 from datetime import datetime
 import pandas as pd
@@ -80,24 +80,29 @@ pihole_top_devices = pihole.top_devices
 # Create ADs Blocking Graph
 createGraph(pihole_data)
 
-# Setup Telegram Bot
-bot = telegram.Bot(token=config('telegram_token'))
-
-# Send Telegram Message
+# Set Message Timestamp
 current_date = datetime.now().strftime('%Y-%m-%d')
-pihole_stats = f'''
-<b>PiHole Metrics</b> on {current_date}
 
-• <b>Total Queries</b> {pihole_queries}
-• <b>ADs Blocked</b> {pihole_blocked}
-• <b>Percentage Blocked</b> {pihole_ads_percentage}%
+# Setup Discord Webhook
+webhook = DiscordWebhook(
+    url=config('webhook_url'),
+    username='PiHole Bot'
+)
 
-'''
+with open(config('pihole_graph_file'), 'rb') as f:
+    webhook.add_file(
+        file=f.read(),
+        filename=f'pihole_stats_{current_date}.jpg'
+    )
 
-bot.send_message(text=pihole_stats, chat_id=config('telegram_chatid'),
-                 parse_mode=telegram.ParseMode.HTML)
-bot.send_photo(photo=open(config('pihole_graph_file'), 'rb'),
-               chat_id=config('telegram_chatid'))
+embed = DiscordEmbed(title='PiHole Metrics', description=f'For {current_date}')
+embed.add_embed_field(name='Total Queries', value=pihole_queries)
+embed.add_embed_field(name='ADs Blocked', value=pihole_blocked)
+embed.add_embed_field(name='Blocked Percentage', value=f'{pihole_ads_percentage}%')
+embed.set_image(url=f'attachment://pihole_stats_{current_date}.jpg')
+
+webhook.add_embed(embed)
+response = webhook.execute()
 
 # Remove the Generated Image
 os.remove(config('pihole_graph_file'))

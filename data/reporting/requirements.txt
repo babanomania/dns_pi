@@ -49,4 +49,4 @@ tzdata==2021.4
 tzlocal==4.0.1
 urllib3==1.26.7
 wcwidth==0.2.5
-
+discord_webhook==0.16.3
